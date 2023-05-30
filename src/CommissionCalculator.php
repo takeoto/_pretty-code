@@ -20,14 +20,19 @@ class CommissionCalculator implements CommissionCalculatorInterface
     ) {
     }
 
+    /**
+     * @inheritDoc
+     */
     public function calculate(TransactionDTO $transaction): float
     {
-        $currency = $transaction->currency;
         $bin = $this->binProvider->getByCode($transaction->binCode);
         $locationCoefficient = $bin?->country->getContinent() === Continent::EUROPE ? 0.01 : 0.02;
-        $amntFixed = $currency === Currency::EURO
-            ? $transaction->amount
-            : $transaction->amount / $this->currenciesProvider->getRate($currency);
+        $amntFixed = $transaction->amount;
+
+        if ($transaction->currency !== Currency::EURO) {
+            $rate = $this->currenciesProvider->getRate($transaction->currency);
+            $amntFixed = $rate > 0 ? $amntFixed / $rate : $amntFixed;
+        }
 
         return FloatResolver::roundUp($amntFixed * $locationCoefficient, 2);
     }

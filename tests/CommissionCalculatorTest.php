@@ -119,6 +119,20 @@ final class CommissionCalculatorTest extends TestCase
                 ],
                 'commission' => 0.95,
             ],
+            'Division by zero rate' => [
+                'transaction' => [
+                    'amount' => 100,
+                    'currency' => [
+                        'rate' => 0.0,
+                        'code' => Currency::JAPANESE_YEN,
+                    ],
+                    'bin' => [
+                        'code' => 1,
+                        'country' => Country::AFGHANISTAN,
+                    ],
+                ],
+                'commission' => 2.0,
+            ],
         ];
     }
 
