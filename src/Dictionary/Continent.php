@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Takeoto\PrettyCode\Dictionary;
 
-enum Continent: string
+final class Continent
 {
-    case ASIA = 'AS';
-    case AFRICA = 'AF';
-    case EUROPE = 'EU';
-    case NORTH_AMERICA = 'NA';
-    case SOUTH_AMERICA = 'SA';
-    case OCEANIA = 'OC';
-    case AUSTRALIA = 'AN';
+    public const ASIA = 'AS';
+    public const AFRICA = 'AF';
+    public const EUROPE = 'EU';
+    public const NORTH_AMERICA = 'NA';
+    public const SOUTH_AMERICA = 'SA';
+    public const OCEANIA = 'OC';
+    public const AUSTRALIA = 'AN';
 }

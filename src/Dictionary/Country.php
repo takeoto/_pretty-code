@@ -4,40 +4,40 @@ declare(strict_types=1);
 
 namespace Takeoto\PrettyCode\Dictionary;
 
-enum Country: string
+final class Country
 {
-    case AUSTRIA = 'AT';
-    case BELGIUM = 'BE';
-    case ESTONIA = 'EE';
-    case BULGARIA = 'BG';
-    case CROATIA = 'HR';
-    case CYPRUS = 'CY';
-    case CZECHIA = 'CZ';
-    case DENMARK = 'DK';
-    case FINLAND = 'FI';
-    case FRANCE = 'FR';
-    case GERMANY = 'DE';
-    case GREECE = 'GR';
-    case HUNGARY = 'HU';
-    case IRELAND = 'IE';
-    case ITALY = 'IT';
-    case LATVIA = 'LV';
-    case LITHUANIA = 'LT';
-    case LUXEMBOURG = 'LU';
-    case MALTA = 'MT';
-    case NETHERLANDS = 'NL';
-    case PORTUGAL = 'PT';
-    case ROMANIA = 'RO';
-    case SLOVAKIA = 'SK';
-    case SLOVENIA = 'SI';
-    case SPAIN = 'ES';
-    case SWEDEN = 'SE';
-    case AFGHANISTAN = 'AF';
+    public const AUSTRIA = 'AT';
+    public const BELGIUM = 'BE';
+    public const ESTONIA = 'EE';
+    public const BULGARIA = 'BG';
+    public const CROATIA = 'HR';
+    public const CYPRUS = 'CY';
+    public const CZECHIA = 'CZ';
+    public const DENMARK = 'DK';
+    public const FINLAND = 'FI';
+    public const FRANCE = 'FR';
+    public const GERMANY = 'DE';
+    public const GREECE = 'GR';
+    public const HUNGARY = 'HU';
+    public const IRELAND = 'IE';
+    public const ITALY = 'IT';
+    public const LATVIA = 'LV';
+    public const LITHUANIA = 'LT';
+    public const LUXEMBOURG = 'LU';
+    public const MALTA = 'MT';
+    public const NETHERLANDS = 'NL';
+    public const PORTUGAL = 'PT';
+    public const ROMANIA = 'RO';
+    public const SLOVAKIA = 'SK';
+    public const SLOVENIA = 'SI';
+    public const SPAIN = 'ES';
+    public const SWEDEN = 'SE';
+    public const AFGHANISTAN = 'AF';
     # Other countries
 
-    public function getContinent(): ?Continent
+    public static function getContinent(string $country): ?string
     {
-        return match ($this) {
+        return match ($country) {
             self::AUSTRIA,
             self::BELGIUM,
             self::BULGARIA,

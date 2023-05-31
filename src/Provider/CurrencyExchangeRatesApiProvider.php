@@ -18,7 +18,7 @@ class CurrencyExchangeRatesApiProvider implements CurrenciesProviderInterface
     ) {
     }
 
-    public function getRate(Currency $currency): float
+    public function getRate(string $currency): float
     {
         $response = $this->httpClient->request('GET', $this->uri, [
             RequestOptions::QUERY => [
@@ -37,8 +37,8 @@ class CurrencyExchangeRatesApiProvider implements CurrenciesProviderInterface
             case is_array($responseBody):
             case array_key_exists('rates', $responseBody):
             case is_array($responseBody['rates']):
-            case array_key_exists($currency->value, $responseBody['rates']):
-            case ($rate = filter_var($responseBody['rates'][$currency->value], FILTER_VALIDATE_FLOAT)) !== false:
+            case array_key_exists($currency, $responseBody['rates']):
+            case ($rate = filter_var($responseBody['rates'][$currency], FILTER_VALIDATE_FLOAT)) !== false:
                 return 0.0;
         }
 

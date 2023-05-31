@@ -133,6 +133,20 @@ final class CommissionCalculatorTest extends TestCase
                 ],
                 'commission' => 2.0,
             ],
+            'Backwards compatibility [invalid currency]' => [
+                'transaction' => [
+                    'amount' => 100,
+                    'currency' => [
+                        'rate' => 0.0,
+                        'code' => 'PIKACHU',
+                    ],
+                    'bin' => [
+                        'code' => 1,
+                        'country' => Country::AFGHANISTAN,
+                    ],
+                ],
+                'commission' => 2.0,
+            ],
         ];
     }
 

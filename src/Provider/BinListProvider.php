@@ -7,7 +7,6 @@ namespace Takeoto\PrettyCode\Provider;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 use Takeoto\PrettyCode\Contract\BinProviderInterface;
-use Takeoto\PrettyCode\Dictionary\Country;
 use Takeoto\PrettyCode\DTO\BinDTO;
 
 class BinListProvider implements BinProviderInterface
@@ -36,8 +35,7 @@ class BinListProvider implements BinProviderInterface
             case array_key_exists('country', $responseBody):
             case is_array($responseBody['country']):
             case array_key_exists('alpha2', $responseBody['country']):
-            case is_string($responseBody['country']['alpha2']):
-            case ($country = Country::tryFrom($responseBody['country']['alpha2'])) !== null:
+            case is_string($country = $responseBody['country']['alpha2']):
                 return null;
         }
 

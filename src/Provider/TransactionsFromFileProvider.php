@@ -55,10 +55,11 @@ class TransactionsFromFileProvider implements TransactionsProviderInterface
             case array_key_exists('currency', $parsedData):
             case ($binCode = filter_var($parsedData['bin'], FILTER_VALIDATE_INT)) !== false:
             case ($amount = filter_var($parsedData['amount'], FILTER_VALIDATE_FLOAT)) !== false:
-            case is_string($parsedData['currency']):
-            case ($currency = Currency::tryFrom($parsedData['currency'])) !== null:
                 return null;
         }
+
+        # Backwards compatibility [invalid currency]
+        $currency = is_string($parsedData['currency']) ? $parsedData['currency'] : null;
 
         return new TransactionDTO($binCode, $amount, $currency);
     }
